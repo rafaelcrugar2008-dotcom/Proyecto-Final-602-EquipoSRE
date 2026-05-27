@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EMSaD 35 San Antonino El Alto</title>
+    <link rel="stylesheet" href="style.css">
+
+    <!-- GOOGLE FONTS para una tipografía más bonita -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- ESTILOS GENERALES (RESET) --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* --- ENCABEZADO --- */
+        header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .contenedor-header {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo h1 {
+            font-size: 2rem;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .logo span {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            font-weight: 300;
+        }
+
+        /* --- MENÚ --- */
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 400;
+            transition: color 0.3s;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+
+        nav ul li a:hover {
+            color: #ffd700;
+            background-color: rgba(255,255,255,0.1);
+        }
+
+        /* --- CONTENIDO PRINCIPAL --- */
+        main {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        /* Estilo para cada sección (actividad) */
+        .actividad {
+            display: flex;
+            align-items: stretch; /*Hace que la imagen y el texto tengan la misma altura*/
+            background: white;
+            margin-bottom: 60px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            overflow: hidden;
+            gap: 30px;
+        }
+
+        /* Alternar posición en pantallas grandes */
+        .actividad:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        /* Contenedor de Imagen con Efecto Hover */
+        .imagen-container {
+            flex: 1; /* Ocupará 1 parte del espacio disponible */
+            max-width: 50%; /* No ocupará más de la mitad del contenedor */
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            /* Altura automática - se ajusta al tamaño de la imagen */
+            height: auto; 
+            display: flex;
+        }
+
+        .imagen-container img {
+            width: 100%;
+            height: auto; /* La imagen mantiene su proporción */
+            object-fit: cover;
+            transition: transform 0.5s ease;
+            display: block;
+        }
+
+        /* EFECTO HOVER: Zoom al pasar el mouse */
+        .imagen-container:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Contenedor del Texto */
+        .texto-container {
+            flex: 1; /* Ocupará 1 parte del espacio disponible */
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .texto-container h2 {
+            color: #1e3c72;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            border-bottom: 3px solid #ffd700;
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        .texto-container p {
+            font-size: 1rem;
+            color: #555;
+            text-align: justify;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: #1e3c72;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+        }
+
+        /* --- DISEÑO RESPONSIVO (MÓVILES) --- */
+        @media (max-width: 768px) {
+            .contenedor-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 15px;
+                padding: 0;
+            }
+
+            .actividad, .actividad:nth-child(even) {
+                flex-direction: column;
+                padding: 15px;
+            }
+
+            .imagen-container {
+                width: 100%;
+                max-width: 100%;
+            }
+            
+            .imagen-container img {
+                width: 100%;
+                height: auto;
+            }
+            
+            .texto-container {
+                padding: 20px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ENCABEZADO -->
+    <header>
+        <div class="contenedor-header">
+            <div class="logo">
+                <h1>EMSaD 35</h1>
+                <span>San Antonino El Alto</span>
+            </div>
+            
+            <!-- MENÚ DE NAVEGACIÓN -->
+            <nav>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="#esterilizacion">Esterilización</a></li>
+                    <li><a href="#carrera">Carrera</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        
+        <!-- PRIMERA ACTIVIDAD: VACUNACIÓN -->
+        <section id="pec" class="actividad">
+            <div class="imagen-container">
+                <img src="img/CAMPAÑA DE VACUNACION.png" alt="Campaña de Vacunación"> 
+            </div>
+            <div class="texto-container">
+                <h2>Nuestro Proyecto PEC</h2>
+                <p>
+                    La primera actividad que realizamos fue la campaña de vacunación antirrábica. 
+                    Nuestro objetivo es garantizar la salud pública y el bienestar animal en nuestra comunidad, 
+                    ofreciendo servicios gratuitos para los mascotas de la comunidad.
+                </p>
+            </div>
+        </section>
+        
+        
+        <!-- SEGUNDA ACTIVIDAD: ESTERILIZACIÓN -->
+        <section id="esterilizacion" class="actividad">
+            <div class="imagen-container">
+                <img src="img/Estirilizacion.png" alt="Esterilización de mascotas"> 
+            </div>
+            <div class="texto-container">
+                <h2>Campaña de Esterilización</h2>
+                <p>
+                    La segunda actividad que realizamos fue la campaña de esterilización, la cual se llevó a cabo 
+                    el día 26 de mayo del presente año. Agradecemos a todos los participantes por su compromiso con el 
+                    control responsable de la población animal.
+                </p>
+            </div>
+        </section>
+          
+        <!-- TERCERA ACTIVIDAD: CARRERA ATLÉTICA -->
+        <section id="carrera" class="actividad">
+            <div class="imagen-container">
+                <img src="img/cierre.png" alt="cierre del proyecto"> 
+            </div>
+            <div class="texto-container">
+                <h2>cierre del proyecto</h2>
+                <p>
+                    La tercera actividad es nuestra tradicional carrera de 5km. Fomentamos el deporte y la salud 
+                    integral entre nuestros estudiantes y la comunidad, demostrando que la educación va de la mano 
+                    con el bienestar físico.
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- PIE DE PÁGINA -->
+    <footer>
+        <p>&copy; 2026 CECYTE EMSaD 35 - SRE</p>
+    </footer>
+
+</body>
+</html>

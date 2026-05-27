@@ -1,0 +1,227 @@
+/* === VARIABLES DE COLOR === */
+:root {
+    --color-primario: #003366;    /* Azul Institucional */
+    --color-secundario: #c8102e;  /* Rojo Cecilia */
+    --color-claro: #f4f4f4;
+    --color-blanco: #ffffff;
+    --color-texto: #333333;
+}
+
+/* === ESTILOS GENERALES === */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--color-texto);
+    background-color: var(--color-claro);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* === ENCABEZADO === */
+header {
+    background-color: var(--color-primario);
+    color: var(--color-blanco);
+    padding: 20px 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.contenedor-header {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo h1 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.logo span {
+    display: block;
+    font-size: 0.8rem;
+    color: #cccccc;
+    font-weight: normal;
+}
+
+/* === MENÚ DE NAVEGACIÓN === */
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--color-blanco);
+    font-weight: 500;
+    transition: color 0.3s;
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+nav a:hover {
+    background-color: rgba(255,255,255,0.1);
+    color: #ffd700;
+}
+
+/* === CONTENIDO PRINCIPAL === */
+main {
+    flex: 1;
+}
+
+.hero {
+    background: linear-gradient(135deg, var(--color-primario), #004080);
+    color: var(--color-blanco);
+    padding: 80px 20px;
+    text-align: center;
+}
+
+.hero h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    max-width: 700px;
+    margin: 0 auto;
+    opacity: 0.9;
+}
+
+.contenedor {
+    width: 90%;
+    max-width: 1200px;
+    margin: 40px auto;
+}
+
+/* === INFORMACIÓN === */
+.info-institucion {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.info-institucion h2 {
+    color: var(--color-primario);
+    margin-bottom: 15px;
+}
+
+.info-institucion p {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.titulo-seccion {
+    text-align: center;
+    color: var(--color-primario);
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+}
+
+/* === TARJETAS DE SERVICIOS === */
+.servicios-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.tarjeta {
+    background: var(--color-blanco);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s;
+    border-top: 4px solid var(--color-secundario);
+}
+
+.tarjeta:hover {
+    transform: translateY(-5px);
+}
+
+.tarjeta-contenido {
+    padding: 25px;
+}
+
+.tarjeta h3 {
+    color: var(--color-primario);
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+}
+
+/* === CONTACTO === */
+.contacto-seccion {
+    background-color: var(--color-blanco);
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    text-align: center;
+    margin-top: 50px;
+}
+
+.info-contacto {
+    margin: 20px 0;
+}
+
+.info-contacto p {
+    margin: 10px 0;
+    font-size: 1.1rem;
+}
+
+.btn {
+    display: inline-block;
+    background-color: var(--color-secundario);
+    color: white;
+    padding: 10px 25px;
+    text-decoration: none;
+    border-radius: 50px;
+    margin-top: 20px;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.btn:hover {
+    background-color: #a00e25;
+}
+
+/* === PIE DE PÁGINA === */
+footer {
+    background-color: #222;
+    color: #aaa;
+    text-align: center;
+    padding: 20px 0;
+    font-size: 0.9rem;
+    margin-top: auto;
+}
+
+/* === DISEÑO RESPONSIVO === */
+@media (max-width: 768px) {
+    .contenedor-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+    
+    nav ul {
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+        text-align: center;
+    }
+    
+    .hero h2 {
+        font-size: 1.8rem;
+    }
+}
