@@ -1,11 +1,19 @@
-/* === VARIABLES DE COLOR === */
+/* === VARIABLES DE COLOR (SIN CAMBIOS) === */
 :root {
     --color-primario: #003366;    /* Azul Institucional */
     --color-secundario: #c8102e;  /* Rojo Cecilia */
     --color-claro: #f4f4f4;
     --color-blanco: #ffffff;
     --color-texto: #333333;
+    --color-texto-claro: #666666;
+    --sombra-moderna: 0 10px 40px rgba(0, 0, 0, 0.1);
+    --sombra-hover: 0 20px 50px rgba(0, 0, 0, 0.15);
+    --radio: 12px;
+    --transicion: all 0.3s ease;
 }
+
+/* === IMPORTAR FUENTE MODERNA === */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 /* === ESTILOS GENERALES === */
 * {
@@ -14,22 +22,30 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    line-height: 1.6;
+    font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.7;
     color: var(--color-texto);
     background-color: var(--color-claro);
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    font-size: 16px;
 }
 
 /* === ENCABEZADO === */
 header {
     background-color: var(--color-primario);
     color: var(--color-blanco);
-    padding: 20px 0;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    padding: 15px 0;
+    box-shadow: var(--sombra-moderna);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 .contenedor-header {
@@ -42,38 +58,80 @@ header {
 }
 
 .logo h1 {
-    font-size: 1.5rem;
-    font-weight: bold;
+    font-size: 1.6rem;
+    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
+    margin: 0;
 }
 
 .logo span {
     display: block;
-    font-size: 0.8rem;
-    color: #cccccc;
-    font-weight: normal;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 3px;
 }
 
 /* === MENÚ DE NAVEGACIÓN === */
 nav ul {
     list-style: none;
     display: flex;
-    gap: 20px;
+    gap: 30px;
+    align-items: center;
 }
 
 nav a {
     text-decoration: none;
     color: var(--color-blanco);
     font-weight: 500;
-    transition: color 0.3s;
-    padding: 5px 10px;
-    border-radius: 4px;
+    font-size: 0.95rem;
+    transition: var(--transicion);
+    padding: 8px 15px;
+    border-radius: 6px;
+    position: relative;
+}
+
+/* Efecto línea inferior al hover */
+nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: var(--color-secundario);
+    transition: var(--transicion);
+    transform: translateX(-50%);
 }
 
 nav a:hover {
-    background-color: rgba(255,255,255,0.1);
+    background-color: transparent;
     color: #ffd700;
+}
+
+nav a:hover::after {
+    width: 70%;
+}
+
+/* === BOTÓN HAMBURGUESA (MÓVIL) === */
+.hamburger {
+    display: none;
+    cursor: pointer;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    padding: 5px;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background-color: var(--color-blanco);
+    transition: var(--transicion);
+    border-radius: 2px;
 }
 
 /* === CONTENIDO PRINCIPAL === */
@@ -81,53 +139,107 @@ main {
     flex: 1;
 }
 
+/* === HERO SECTION === */
 .hero {
-    background: linear-gradient(135deg, var(--color-primario), #004080);
+    background: linear-gradient(135deg, var(--color-primario) 0%, #004080 100%);
     color: var(--color-blanco);
-    padding: 80px 20px;
+    padding: 100px 20px;
     text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Decoración de fondo */
+.hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+    border-radius: 50%;
+}
+
+.hero::after {
+    content: '';
+    position: absolute;
+    bottom: -30%;
+    left: -10%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(200, 16, 46, 0.1) 0%, transparent 70%);
+    border-radius: 50%;
 }
 
 .hero h2 {
-    font-size: 2.5rem;
+    font-size: 3rem;
+    font-weight: 700;
     margin-bottom: 20px;
+    line-height: 1.2;
 }
 
 .hero p {
-    font-size: 1.2rem;
+    font-size: 1.25rem;
     max-width: 700px;
-    margin: 0 auto;
+    margin: 0 auto 30px;
     opacity: 0.9;
+    font-weight: 300;
 }
 
 .contenedor {
     width: 90%;
     max-width: 1200px;
-    margin: 40px auto;
+    margin: 60px auto;
 }
 
 /* === INFORMACIÓN === */
 .info-institucion {
     text-align: center;
-    margin-bottom: 50px;
+    margin-bottom: 60px;
+    padding: 40px;
+    background: var(--color-blanco);
+    border-radius: var(--radio);
+    box-shadow: var(--sombra-moderna);
 }
 
 .info-institucion h2 {
     color: var(--color-primario);
-    margin-bottom: 15px;
+    margin-bottom: 20px;
+    font-size: 2rem;
+    font-weight: 600;
 }
 
 .info-institucion p {
     max-width: 800px;
     margin: 0 auto;
+    font-size: 1.1rem;
+    color: var(--color-texto-claro);
+    line-height: 1.8;
 }
 
 .titulo-seccion {
     text-align: center;
     color: var(--color-primario);
-    border-bottom: 2px solid #ddd;
-    padding-bottom: 10px;
-    margin-bottom: 30px;
+    border-bottom: 2px solid var(--color-secundario);
+    padding-bottom: 15px;
+    margin-bottom: 40px;
+    font-size: 2rem;
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.titulo-seccion::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background-color: var(--color-primario);
+    border-radius: 2px;
 }
 
 /* === TARJETAS DE SERVICIOS === */
@@ -140,93 +252,202 @@ main {
 
 .tarjeta {
     background: var(--color-blanco);
-    border-radius: 8px;
+    border-radius: var(--radio);
     overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-    transition: transform 0.3s;
-    border-top: 4px solid var(--color-secundario);
+    box-shadow: var(--sombra-moderna);
+    transition: var(--transicion);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    position: relative;
+}
+
+.tarjeta::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background-color: var(--color-secundario);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: var(--transicion);
 }
 
 .tarjeta:hover {
-    transform: translateY(-5px);
+    transform: translateY(-10px);
+    box-shadow: var(--sombra-hover);
+}
+
+.tarjeta:hover::before {
+    transform: scaleX(1);
 }
 
 .tarjeta-contenido {
-    padding: 25px;
+    padding: 35px;
 }
 
-.tarjeta h3 {
+.tarjeta-contenido h3 {
     color: var(--color-primario);
     margin-bottom: 15px;
-    font-size: 1.3rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+.tarjeta-contenido p {
+    color: var(--color-texto-claro);
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+/* Icono decorativo (opcional) */
+.tarjeta .icono {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    display: block;
 }
 
 /* === CONTACTO === */
 .contacto-seccion {
-    background-color: var(--color-blanco);
-    padding: 40px;
-    border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    background: linear-gradient(135deg, var(--color-blanco) 0%, #fafafa 100%);
+    padding: 50px;
+    border-radius: var(--radio);
+    box-shadow: var(--sombra-moderna);
     text-align: center;
     margin-top: 50px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.contacto-seccion h2 {
+    color: var(--color-primario);
+    font-size: 1.8rem;
+    margin-bottom: 15px;
 }
 
 .info-contacto {
-    margin: 20px 0;
+    margin: 30px 0;
 }
 
 .info-contacto p {
-    margin: 10px 0;
+    margin: 15px 0;
     font-size: 1.1rem;
+    color: var(--color-texto-claro);
 }
 
+.info-contacto strong {
+    color: var(--color-texto);
+}
+
+/* === BOTONES === */
 .btn {
     display: inline-block;
     background-color: var(--color-secundario);
     color: white;
-    padding: 10px 25px;
+    padding: 14px 35px;
     text-decoration: none;
     border-radius: 50px;
     margin-top: 20px;
-    font-weight: bold;
-    transition: background 0.3s;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: var(--transicion);
+    box-shadow: 0 4px 15px rgba(200, 16, 46, 0.3);
+    border: none;
+    cursor: pointer;
 }
 
 .btn:hover {
     background-color: #a00e25;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(200, 16, 46, 0.4);
 }
 
 /* === PIE DE PÁGINA === */
 footer {
-    background-color: #222;
-    color: #aaa;
+    background-color: #1a1a1a;
+    color: #999;
     text-align: center;
-    padding: 20px 0;
+    padding: 30px 0;
     font-size: 0.9rem;
     margin-top: auto;
+}
+
+footer p {
+    margin: 0;
 }
 
 /* === DISEÑO RESPONSIVO === */
 @media (max-width: 768px) {
     .contenedor-header {
-        flex-direction: column;
-        text-align: center;
-        gap: 15px;
+        flex-direction: row;
+        position: relative;
     }
     
-    nav ul {
-        flex-direction: column;
-        gap: 10px;
+    /* Ocultar menú normal en móvil */
+    nav ul.nav-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
         width: 100%;
+        background-color: var(--color-primario);
+        flex-direction: column;
+        gap: 0;
+        padding: 0;
+        box-shadow: var(--sombra-moderna);
+    }
+    
+    /* Mostrar menú cuando tenga clase active */
+    nav ul.nav-menu.active {
+        display: flex;
+    }
+    
+    nav ul.nav-menu li {
+        width: 100%;
+    }
+    
+    nav ul.nav-menu li a {
+        display: block;
+        padding: 15px;
         text-align: center;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    /* Mostrar botón hamburguesa */
+    .hamburger {
+        display: flex;
     }
     
     .hero h2 {
-        font-size: 1.8rem;
+        font-size: 2rem;
+    }
+    
+    .hero p {
+        font-size: 1.1rem;
+    }
+    
+    .info-institucion {
+        padding: 30px 20px;
+    }
+    
+    .contacto-seccion {
+        padding: 40px 20px;
     }
 }
 
+/* Animación suave al cargar */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
+.tarjeta, .info-institucion, .contacto-seccion {
+    animation: fadeInUp 0.6s ease forwards;
+}
 
 
 /* --- BOTÓN HAMBURGUESA (oculto en escritorio) --- */
@@ -284,3 +505,4 @@ footer {
                 background-color: #34495e;
             }
         }
+

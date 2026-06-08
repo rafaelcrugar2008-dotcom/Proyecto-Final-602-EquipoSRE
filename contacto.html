@@ -15,6 +15,83 @@
 <!-- Canvas para efectos de fuegos artificiales -->
 <canvas id="canvas-fuegos" style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;"></canvas>
 
+<style>
+/* Contenedor del Mapa */
+        .map-container {
+            padding: 0;
+            position: relative;
+        }
+        
+        .map-label {
+            background: #1e3c72;
+            color: white;
+            padding: 15px 25px;
+            font-size: 1.2em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        #map {
+            height: 500px;
+            width: 100%;
+        }
+        
+        /* Botón de indicaciones */
+        .directions-btn {
+            padding: 25px;
+            background: #f8f9fa;
+            text-align: center;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: 1.1em;
+            font-weight: bold;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 5px 20px rgba(30,60,114,0.4);
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(30,60,114,0.5);
+        }
+        
+        /* Pie de página */
+        .footer {
+            background: #1e3c72;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .footer p {
+            opacity: 0.8;
+            font-size: 0.9em;
+        }
+        
+        /* Diseño responsivo */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.5em;
+            }
+            
+            #map {
+                height: 350px;
+            }
+            
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+
+
 </head>
 <body>
 
@@ -50,6 +127,27 @@
                     <p><strong>Email:</strong> emsad35@cecyteo.edu.mx</p>
                 </div>
 
+                <!-- Leaflet CSS (Biblioteca de mapas gratuita) -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
+          <!-- Botón para obtener direcciones -->
+        <div class="directions-btn">
+            <a href="https://www.google.com/maps/dir//CECyTE+EMSAD+35+San+Antonino+El+Alto+Oaxaca" 
+               target="_blank" 
+               class="btn">
+                📌 ver la direccion
+            </a>
+        </div>
+
+
+         <!-- Mapa Interactivo -->
+        <div class="map-container">
+            <div class="map-label">
+                🗺️ Ubicación en el Mapa
+            </div>
+            <div id="map"></div>
+        </div>
+
                 <a href="#" class="btn">Escríbenos un mensaje</a>
             </section>
         </div>
@@ -59,6 +157,65 @@
     <footer>
         <p>&copy; 2026-cecyte-emsad-35-SRE</p>
     </footer>
+<!-- Leaflet JS (Biblioteca de mapas gratuita) -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <script>
+        // ============================================
+        // COORDENADAS DEL CECyTE EMSAD 35
+        // ============================================
+        // NOTA: Estas son coordenadas aproximadas
+        // de San Antonino El Alto, Oaxaca
+        // 
+        // Para obtener coordenadas exactas:
+        // 1. Ve a Google Maps
+        // 2. Busca "CECyTE EMSAD 35 San Antonino El Alto"
+        // 3. Haz clic derecho en la ubicación exacta
+        // 4. Copia las coordenadas (latitud, longitud)
+        // 5. Actualiza los valores abajo
+        // ============================================
+        
+        var latitude = 16.1500;   // ← cambia esta latitud
+        var longitude = -96.7200; // ← cambia esta longitud
+        
+        // Inicializar el mapa
+        var map = L.map('map').setView([latitude, longitude], 15);
+        
+        // Agregar capas de OpenStreetMap ( gratixas)
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+        
+        // Agregar marcador personalizado
+        var customIcon = L.icon({
+            iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
+            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+            iconSize: [25, 41],
+            iconAnchor: [12, 41],
+            popupAnchor: [1, -34],
+            shadowSize: [41, 41]
+        });
+        
+        var marker = L.marker([latitude, longitude], {icon: customIcon}).addTo(map);
+        
+        // Agregar popup con información
+        marker.bindPopup(
+            '<div style="text-align: center;">' +
+                '<h3 style="color: #1e3c72; margin: 0 0 10px 0;">🏫 CECyTE EMSAD 35</h3>' +
+                '<p style="margin: 5px 0;"><strong>📍 San Antonino El Alto</strong></p>' +
+                '<p style="margin: 5px 0;">Oaxaca, México</p>' +
+                '<p style="margin: 10px 0 0 0; color: #666; font-size: 0.9em;">Haz clic para más información</p>' +
+            '</div>'
+        ).openPopup();
+        
+        // Añadir controles de zoom
+        map.addControl(L.control.zoom({
+            position: 'topright'
+        }));
+    </script>
+
+
+
 <script src="script.js"></script>
 </body>
 </html>
